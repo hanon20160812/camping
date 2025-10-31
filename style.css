@@ -1,0 +1,871 @@
+/* 全域樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #E8F5E8 0%, #FFE4E1 50%, #F0E6FF 100%);
+    min-height: 100vh;
+}
+
+/* 新的頂部導航欄 */
+.top-nav {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    height: 150px;
+}
+
+.nav-logo {
+    flex-shrink: 0;
+    margin-right: 3rem;
+}
+
+.logo-img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 0;
+    flex: 1;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    font-family: 'Noto Sans TC', sans-serif;
+    border-bottom: 3px solid transparent;
+    min-width: 140px;
+}
+
+.nav-icon {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+    filter: brightness(0.6) contrast(1.2);
+}
+
+.nav-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* 分頁主題顏色 - SVG優化版本 */
+.nav-btn[data-tab="info"] .nav-icon {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.nav-btn[data-tab="info"]:hover,
+.nav-btn[data-tab="info"].active {
+    background: #FCE4EC;
+    color: #E91E63;
+    border-bottom-color: #E91E63;
+}
+
+.nav-btn[data-tab="info"]:hover .nav-icon,
+.nav-btn[data-tab="info"].active .nav-icon {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.nav-btn[data-tab="activities"] .nav-icon {
+    filter: invert(45%) sepia(95%) saturate(1758%) hue-rotate(4deg) brightness(103%) contrast(103%);
+}
+
+.nav-btn[data-tab="activities"]:hover,
+.nav-btn[data-tab="activities"].active {
+    background: #FFF3E0;
+    color: #FF9800;
+    border-bottom-color: #FF9800;
+}
+
+.nav-btn[data-tab="activities"]:hover .nav-icon,
+.nav-btn[data-tab="activities"].active .nav-icon {
+    filter: invert(45%) sepia(95%) saturate(1758%) hue-rotate(4deg) brightness(103%) contrast(103%);
+}
+
+.nav-btn[data-tab="facilities"] .nav-icon {
+    filter: invert(64%) sepia(88%) saturate(1180%) hue-rotate(88deg) brightness(85%) contrast(85%);
+}
+
+.nav-btn[data-tab="facilities"]:hover,
+.nav-btn[data-tab="facilities"].active {
+    background: #E8F5E8;
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+.nav-btn[data-tab="facilities"]:hover .nav-icon,
+.nav-btn[data-tab="facilities"].active .nav-icon {
+    filter: invert(64%) sepia(88%) saturate(1180%) hue-rotate(88deg) brightness(85%) contrast(85%);
+}
+
+.nav-btn[data-tab="attractions"] .nav-icon {
+    filter: invert(52%) sepia(23%) saturate(2065%) hue-rotate(138deg) brightness(94%) contrast(85%);
+}
+
+.nav-btn[data-tab="attractions"]:hover,
+.nav-btn[data-tab="attractions"].active {
+    background: #E0F2F1;
+    color: #009688;
+    border-bottom-color: #009688;
+}
+
+.nav-btn[data-tab="attractions"]:hover .nav-icon,
+.nav-btn[data-tab="attractions"].active .nav-icon {
+    filter: invert(52%) sepia(23%) saturate(2065%) hue-rotate(138deg) brightness(94%) contrast(85%);
+}
+
+.nav-btn[data-tab="gallery"] .nav-icon {
+    filter: invert(38%) sepia(15%) saturate(1587%) hue-rotate(15deg) brightness(89%) contrast(90%);
+}
+
+.nav-btn[data-tab="gallery"]:hover,
+.nav-btn[data-tab="gallery"].active {
+    background: #EFEBE9;
+    color: #795548;
+    border-bottom-color: #795548;
+}
+
+.nav-btn[data-tab="gallery"]:hover .nav-icon,
+.nav-btn[data-tab="gallery"].active .nav-icon {
+    filter: invert(38%) sepia(15%) saturate(1587%) hue-rotate(15deg) brightness(89%) contrast(90%);
+}
+
+/* 麵包屑導航 */
+.breadcrumb {
+    background: #c2185b;
+    color: white;
+    padding: 0.8rem 0;
+    transition: background-color 0.3s ease;
+}
+
+/* 各分頁的麵包屑配色 */
+.breadcrumb.info {
+    background: #E91E63;
+}
+
+.breadcrumb.activities {
+    background: #FF9800;
+}
+
+.breadcrumb.facilities {
+    background: #4CAF50;
+}
+
+.breadcrumb.attractions {
+    background: #009688;
+}
+
+.breadcrumb.gallery {
+    background: #795548;
+}
+
+.breadcrumb-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.breadcrumb i {
+    font-size: 0.8rem;
+}
+
+.breadcrumb span {
+    opacity: 0.9;
+}
+
+/* 頁面標題區域 */
+.page-title {
+    background: linear-gradient(to bottom, white 90%, rgba(255, 255, 255, 0) 0%);
+    padding: 2rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    background-image: linear-gradient(to bottom, white 90%, rgba(255, 255, 255, 0) 0%), url('Photo/recommend_wave.png');
+    background-repeat: no-repeat, repeat-x;
+    background-position: top left, bottom left;
+    background-size: 100% 100%, auto;
+}
+
+.title-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.title-container h1 {
+    font-size: 2.5rem;
+    color: #E91E63;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+/* 各分頁的標題配色 */
+.page-title.info .title-container h1 {
+    color: #E91E63;
+}
+
+.page-title.activities .title-container h1 {
+    color: #FF9800;
+}
+
+.page-title.facilities .title-container h1 {
+    color: #4CAF50;
+}
+
+.page-title.attractions .title-container h1 {
+    color: #009688;
+}
+
+.page-title.gallery .title-container h1 {
+    color: #795548;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Hero區域 */
+.hero {
+    background: linear-gradient(135deg, #8c8ef0  0%,  #2c214d 100%);
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="90" cy="80" r="1.2" fill="%23ffffff" opacity="0.1"/><circle cx="10" cy="60" r="0.8" fill="%23ffffff" opacity="0.1"/></svg>');
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.date {
+    font-size: 1.3rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.host {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hero圖片輪播 */
+.hero-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-image.active {
+    opacity: 0.3;
+}
+
+/* 移除舊的導航標籤樣式，已被新的top-nav取代 */
+
+/* 主要內容區域 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 卡片樣式 */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.card h3 {
+    font-size: 2rem;
+    color: #E91E63;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.card h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #E91E63;
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+/* 資訊網格 */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-item .icon {
+    font-size: 1.5rem;
+    background: #FF69B4;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-item strong {
+    color: #333;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.info-item p {
+    color: #666;
+    margin: 0;
+}
+
+.info-item a {
+    color: #E91E63;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}
+
+/* 地圖容器 */
+.map-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.map-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.map-image:hover {
+    transform: scale(1.02);
+}
+
+/* 活動網格 */
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.activity-card {
+    background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="90" cy="20" r="0.8" fill="%23ffffff" opacity="0.1"/><circle cx="20" cy="80" r="1.2" fill="%23ffffff" opacity="0.1"/></svg>');
+}
+
+.activity-card:nth-child(even) {
+    background: linear-gradient(135deg, #255568 0%, #afdcf1 100%);
+}
+
+.activity-card:nth-child(3n) {
+    background: linear-gradient(135deg, #cca4e6 0%, #255568 100%);
+}
+
+.activity-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.activity-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.activity-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.activity-card p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* 設施網格 */
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.facility-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+    color: white;
+    border: 2px solid #FF6B6B;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.facility-item:hover {
+    transform: translateY(-3px);
+}
+
+.facility-item .icon {
+    font-size: 1.5rem;
+    background: rgba(255,255,255,0.2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.facility-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.facility-item p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* 設備圖片網格 */
+.equipment-gallery {
+    margin-top: 2rem;
+}
+
+.equipment-gallery h4 {
+    font-size: 1.5rem;
+    color: #E91E63;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.equipment-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipment-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 景點區域 */
+.attractions-section {
+    margin-bottom: 2.5rem;
+}
+
+.attractions-section h4 {
+    font-size: 1.5rem;
+    color: #E91E63;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #DDA0DD;
+}
+
+.attraction-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.attraction-item {
+    background: #F0E6FF;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid #FF69B4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.attraction-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.attraction-item strong {
+    font-size: 1.2rem;
+    color: #E91E63;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.attraction-item p {
+    margin: 0.3rem 0;
+    color: #666;
+}
+
+/* 相簿區域 */
+.gallery-section {
+    margin-bottom: 3rem;
+}
+
+.gallery-section h4 {
+    font-size: 1.8rem;
+    color: #E91E63;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.gallery-section h4::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #E91E63;
+    margin: 0.5rem auto;
+    border-radius: 1px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    filter: brightness(1);
+}
+
+/* 圖片彈窗 */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: rgba(0,0,0,0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.close-modal:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #F0E68C 0%, #FFE4B5 100%);
+    color: rgb(82, 54, 4);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-note {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    background: rgba(255,255,255,0.1);
+    padding: 0.8rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+        height: auto;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .nav-logo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .nav-btn {
+        padding: 0.8rem 1rem;
+        min-width: 80px;
+        font-size: 0.8rem;
+    }
+
+    .nav-btn i {
+        font-size: 1.2rem;
+    }
+
+    .title-container h1 {
+        font-size: 2rem;
+    }
+
+    .breadcrumb-container {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        padding: 1.5rem 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .info-grid,
+    .activities-grid,
+    .facilities-grid,
+    .attraction-list {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid,
+    .equipment-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .date {
+        font-size: 1.1rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .photo-grid,
+    .equipment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-img,
+    .equipment-img {
+        height: 250px;
+    }
+}
