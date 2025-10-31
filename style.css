@@ -212,7 +212,7 @@ body {
     padding: 2rem 0;
     border-bottom: 1px solid #e0e0e0;
     position: relative;
-    background-image: linear-gradient(to bottom, white 90%, rgba(255, 255, 255, 0) 0%), url('Photo/recommend_wave.png');
+    background-image: linear-gradient(to bottom, white 90%, rgba(255, 255, 255, 0) 0%), url('img/recommend_wave.png');
     background-repeat: no-repeat, repeat-x;
     background-position: top left, bottom left;
     background-size: 100% 100%, auto;
@@ -689,7 +689,7 @@ body {
     border-radius: 1px;
 }
 
-.photo-grid {
+.img-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
@@ -843,7 +843,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .photo-grid,
+    .img-grid,
     .equipment-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
@@ -859,7 +859,7 @@ body {
         padding: 0.6rem 1rem;
     }
 
-    .photo-grid,
+    .img-grid,
     .equipment-grid {
         grid-template-columns: 1fr;
     }
