@@ -119,48 +119,50 @@
 
             <!-- 設施環境子內容 -->
             <div id="info-facilities" class="sub-tab-content">
-                <div class="card">
-                    <div class="facilities-grid">
-                        <div class="facility-item">
-                            <span class="icon">🍆</span>
-                            <strong>冰箱設備</strong>
-                            <p>H區、D1區提供</p>
-                        </div>
-                        <div class="facility-item">
-                            <span class="icon">🚿</span>
-                            <strong>衛浴設施</strong>
-                            <p>H區、D1區 (洗髮精、沐浴乳、吹風機、水桶水瓢)</p>
-                        </div>
-                        <div class="facility-item">
-                            <span class="icon">⛲</span>
-                            <strong>遊樂設施</strong>
-                            <p>戲水池、兒童玩沙區</p>
-                        </div>
-                        <div class="facility-item">
-                            <span class="icon">💧</span>
-                            <strong>飲水注意</strong>
-                            <p>⚠️ 沒有飲水機，需自行煮水或準備飲用水</p>
-                        </div>
-                        <div class="facility-item">
-                            <span class="icon">🥕</span>
-                            <strong>便利服務</strong>
-                            <p>營主小賣部、小蜜蜂補給車</p>
-                        </div>
-                        <div class="facility-item">
-                            <span class="icon">📶</span>
-                            <strong>網路訊號</strong>
-                            <p>遠傳、台哥大訊號順暢</p>
-                        </div>
+                <div class="facilities-cards-grid">
+                    <div class="facility-card facility-card-mint">
+                        <div class="facility-icon">🍆</div>
+                        <h3>冰箱設備</h3>
+                        <p>H區、D1區提供冰箱設備，讓您的食材保持新鮮</p>
+                        <button class="facility-btn">了解更多</button>
                     </div>
-                    <div class="equipment-gallery">
-                        <h4>設施照片</h4>
-                        <div class="equipment-grid">
-                            <img src="img/EQP01.jpg" alt="營區設施1" class="equipment-img">
-                            <img src="img/EQP02.jpg" alt="營區設施2" class="equipment-img">
-                            <img src="img/EQP03.jpg" alt="營區設施3" class="equipment-img">
-                            <img src="img/EQP04.jpg" alt="營區設施4" class="equipment-img">
-                            <img src="img/EQP05.jpg" alt="營區設施5" class="equipment-img">
-                        </div>
+                    <div class="facility-card facility-card-sakura">
+                        <div class="facility-icon">🚿</div>
+                        <h3>衛浴設施</h3>
+                        <p>H區、D1區提供完整衛浴設施，包含洗髮精、沐浴乳、吹風機、水桶水瓢</p>
+                        <button class="facility-btn">了解更多</button>
+                    </div>
+                    <div class="facility-card facility-card-sky">
+                        <div class="facility-icon">⛲</div>
+                        <h3>遊樂設施</h3>
+                        <p>戲水池、兒童玩沙區，讓孩子們盡情玩耍</p>
+                        <button class="facility-btn">了解更多</button>
+                    </div>
+                    <div class="facility-card facility-card-cream">
+                        <div class="facility-icon">💧</div>
+                        <h3>飲水注意</h3>
+                        <p>⚠️ 沒有飲水機，需自行煮水或準備飲用水</p>
+                        <button class="facility-btn">了解更多</button>
+                    </div>
+                    <div class="facility-card facility-card-peach">
+                        <div class="facility-icon">🥕</div>
+                        <h3>便利服務</h3>
+                        <p>營主小賣部、小蜜蜂補給車，滿足您的日常需求</p>
+                        <button class="facility-btn">了解更多</button>
+                    </div>
+                    <div class="facility-card facility-card-ocean">
+                        <div class="facility-icon">📶</div>
+                        <h3>網路訊號</h3>
+                        <p>遠傳、台哥大訊號順暢，保持聯繫無阻</p>
+                        <button class="facility-btn">了解更多</button>
+                    </div>
+                </div>
+                <div class="equipment-gallery">
+                    <h4>設施照片</h4>
+                    <div class="equipment-grid">
+                        <img src="img/EQP01.jpg" alt="營區設施1" class="equipment-img">
+                        <img src="img/EQP02.jpg" alt="營區設施2" class="equipment-img">
+                        <img src="img/EQP03.jpg" alt="營區設施3" class="equipment-img">
                     </div>
                 </div>
             </div>
@@ -384,7 +386,8 @@
                         <div class="payment-method">
                             <div class="payment-icon">🏦</div>
                             <h4>一般轉帳</h4>
-                            <p>請使用您的銀行帳戶進行轉帳</p>
+                            <p>郵局700</p>
+                            <p>01211800476666</p>
                         </div>
                         <div class="payment-method">
                             <div class="payment-icon">📱</div>
@@ -416,14 +419,30 @@
         // 導覽列滾動效果（僅電腦版）
         const topNav = document.querySelector('.top-nav');
         let lastScrollTop = 0;
+        let ticking = false;
+        let isScrolled = false;
+
+        // 使用 requestAnimationFrame 優化滾動性能
+        function updateNavBar() {
+            if (window.innerWidth >= 1000) {
+                const scrollTop = window.pageYOffset;
+
+                // 添加緩衝區避免閃爍：向下滾動超過 150px 才添加，向上滾動低於 120px 才移除
+                if (!isScrolled && scrollTop > 150) {
+                    topNav.classList.add('scrolled');
+                    isScrolled = true;
+                } else if (isScrolled && scrollTop < 120) {
+                    topNav.classList.remove('scrolled');
+                    isScrolled = false;
+                }
+            }
+            ticking = false;
+        }
 
         window.addEventListener('scroll', () => {
-            if (window.innerWidth >= 1000) {
-                if (window.pageYOffset > 135) {
-                    topNav.classList.add('scrolled');
-                } else {
-                    topNav.classList.remove('scrolled');
-                }
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavBar);
+                ticking = true;
             }
         });
 
@@ -550,6 +569,62 @@
             setTimeout(() => {
                 backToTopBtn.classList.remove('flying');
             }, 800);
+        });
+
+        // 設施卡片按鈕點擊效果
+        document.querySelectorAll('.facility-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // 創建愛心飄散效果
+                for (let i = 0; i < 6; i++) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💖';
+                    heart.style.position = 'fixed';
+                    heart.style.fontSize = '1.2rem';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+
+                    const rect = this.getBoundingClientRect();
+                    heart.style.left = (rect.left + rect.width/2 + (Math.random() - 0.5) * 100) + 'px';
+                    heart.style.top = (rect.top + rect.height/2) + 'px';
+
+                    document.body.appendChild(heart);
+
+                    // 動畫
+                    heart.animate([
+                        {
+                            transform: 'translateY(0px) scale(1)',
+                            opacity: 1
+                        },
+                        {
+                            transform: `translateY(-100px) scale(0)`,
+                            opacity: 0
+                        }
+                    ], {
+                        duration: 1500,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    }).onfinish = () => heart.remove();
+                }
+
+                // 按鈕反饋
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // 設施卡片進入動畫
+        document.querySelectorAll('.facility-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
         });
     </script>
 </body>
