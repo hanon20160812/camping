@@ -21,7 +21,8 @@ body {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid #e0e0e0;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .nav-container {
@@ -32,20 +33,20 @@ body {
     justify-content: center;
     padding: 0 2rem;
     height: 150px;
-    transition: all 0.3s ease;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-logo {
     flex-shrink: 0;
     margin-right: 3rem;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .logo-img {
     height: 120px;
     width: auto;
     object-fit: contain;
-    transition: all 0.3s ease;
+    transition: height 0.3s ease;
 }
 
 .nav-menu {
@@ -53,6 +54,7 @@ body {
     gap: 0;
     flex: 1;
     justify-content: center;
+    transition: width 0.3s ease;
 }
 
 .nav-btn {
@@ -64,7 +66,7 @@ body {
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     color: #666;
     font-family: 'Noto Sans TC', sans-serif;
     border-bottom: 3px solid transparent;
@@ -75,14 +77,14 @@ body {
     width: 3rem;
     height: 3rem;
     object-fit: contain;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
     filter: brightness(0.6) contrast(1.2);
 }
 
 .nav-btn span {
     font-size: 0.9rem;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: font-size 0.3s ease;
 }
 
 /* 滾動後的緊湊樣式（僅電腦版） */
@@ -92,7 +94,10 @@ body {
     }
 
     .top-nav.scrolled .nav-logo {
-        display: none;
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+        position: absolute;
     }
 
     .top-nav.scrolled .nav-menu {
@@ -108,7 +113,9 @@ body {
     }
 
     .top-nav.scrolled .nav-icon {
-        display: none;
+        opacity: 0;
+        width: 0;
+        height: 0;
     }
 
     .top-nav.scrolled .nav-btn span {
@@ -579,53 +586,271 @@ body {
     z-index: 1;
 }
 
-/* 設施網格 */
-.facilities-grid {
+/* 設施網格 - 新風格 */
+.facilities-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
-.facility-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-    color: white;
-    border: 2px solid #ffffff;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(8, 56, 40, 0.4);
-    border-radius: 15px;
-    transition: transform 0.3s ease;
+.facility-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid;
 }
 
-.facility-item:hover {
-    transform: translateY(-3px);
+.facility-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.12);
 }
 
-.facility-item .icon {
-    font-size: 1.5rem;
-    background: rgba(255,255,255,0.2);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+.facility-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    border-radius: 24px 24px 0 0;
 }
 
-.facility-item strong {
+/* 薄荷綠 - 清新自然 */
+.facility-card-mint {
+    border-color: #9ae6b4;
+}
+
+.facility-card-mint::before {
+    background-color: #9ae6b4;
+}
+
+.facility-card-mint .facility-icon {
+    color: #68d391;
+}
+
+.facility-card-mint .facility-btn {
+    background-color: #68d391;
+}
+
+.facility-card-mint .facility-btn:hover {
+    background-color: #48bb78;
+}
+
+/* 櫻花粉 - 溫柔可愛 */
+.facility-card-sakura {
+    border-color: #fed7d7;
+}
+
+.facility-card-sakura::before {
+    background-color: #fed7d7;
+}
+
+.facility-card-sakura .facility-icon {
+    color: #f687b3;
+}
+
+.facility-card-sakura .facility-btn {
+    background-color: #f687b3;
+}
+
+.facility-card-sakura .facility-btn:hover {
+    background-color: #ed64a6;
+}
+
+/* 天空藍 - 純淨清新 */
+.facility-card-sky {
+    border-color: #bee3f8;
+}
+
+.facility-card-sky::before {
+    background-color: #bee3f8;
+}
+
+.facility-card-sky .facility-icon {
+    color: #63b3ed;
+}
+
+.facility-card-sky .facility-btn {
+    background-color: #63b3ed;
+}
+
+.facility-card-sky .facility-btn:hover {
+    background-color: #4299e1;
+}
+
+/* 奶油黃 - 溫暖明亮 */
+.facility-card-cream {
+    border-color: #faf089;
+}
+
+.facility-card-cream::before {
+    background-color: #faf089;
+}
+
+.facility-card-cream .facility-icon {
+    color: #f6e05e;
+}
+
+.facility-card-cream .facility-btn {
+    background-color: #f6e05e;
+}
+
+.facility-card-cream .facility-btn:hover {
+    background-color: #ecc94b;
+}
+
+/* 蜜桃橙 - 活力甜美 */
+.facility-card-peach {
+    border-color: #fed7cc;
+}
+
+.facility-card-peach::before {
+    background-color: #fed7cc;
+}
+
+.facility-card-peach .facility-icon {
+    color: #feb2a8;
+}
+
+.facility-card-peach .facility-btn {
+    background-color: #feb2a8;
+}
+
+.facility-card-peach .facility-btn:hover {
+    background-color: #fc8181;
+}
+
+/* 海洋綠 - 清涼舒爽 */
+.facility-card-ocean {
+    border-color: #b2f5ea;
+}
+
+.facility-card-ocean::before {
+    background-color: #b2f5ea;
+}
+
+.facility-card-ocean .facility-icon {
+    color: #4fd1c7;
+}
+
+.facility-card-ocean .facility-btn {
+    background-color: #4fd1c7;
+}
+
+.facility-card-ocean .facility-btn:hover {
+    background-color: #38b2ac;
+}
+
+.facility-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.2rem;
     display: block;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    text-align: center;
 }
 
-.facility-item p {
-    margin: 0;
-    opacity: 0.9;
+.facility-card h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.facility-card p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.facility-btn {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.facility-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.facility-btn:active {
+    transform: translateY(0);
+}
+
+/* 裝飾元素 */
+.facility-card::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    top: -30px;
+    right: -30px;
+    opacity: 0.1;
+    transition: all 0.3s ease;
+}
+
+.facility-card-mint::after {
+    background-color: #68d391;
+}
+
+.facility-card-sakura::after {
+    background-color: #f687b3;
+}
+
+.facility-card-sky::after {
+    background-color: #63b3ed;
+}
+
+.facility-card-cream::after {
+    background-color: #f6e05e;
+}
+
+.facility-card-peach::after {
+    background-color: #feb2a8;
+}
+
+.facility-card-ocean::after {
+    background-color: #4fd1c7;
+}
+
+.facility-card:hover::after {
+    transform: scale(1.5);
+    opacity: 0.05;
+}
+
+/* 可愛的圖示跳動動畫 */
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        transform: translate3d(0,-8px,0);
+    }
+    70% {
+        transform: translate3d(0,-4px,0);
+    }
+    90% {
+        transform: translate3d(0,-2px,0);
+    }
+}
+
+.facility-card:hover .facility-icon {
+    animation: bounce 1s ease infinite;
 }
 
 /* 設備圖片網格 */
@@ -1176,9 +1401,17 @@ body {
 
     .info-grid,
     .activities-grid,
-    .facilities-grid,
+    .facilities-cards-grid,
     .attraction-list {
         grid-template-columns: 1fr;
+    }
+
+    .facility-card {
+        padding: 1.5rem;
+    }
+
+    .facility-icon {
+        font-size: 3rem;
     }
 
     .img-grid,
